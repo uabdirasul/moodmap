@@ -6,6 +6,8 @@ import { BottomNav } from '@/components/navigation/BottomNav';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Logo } from '@/components/branding/Logo';
+import { FriendsNearby, FriendRecommendations } from '@/components/home/FriendsSection';
+import { EventsSection } from '@/components/home/EventsSection';
 import { mockUserProfile, mockPlaces } from '@/data/mockData';
 import { Sun, MapPin, ArrowRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -53,6 +55,12 @@ export default function HomePage() {
             </div>
           </Card>
         </section>
+
+        <FriendsNearby />
+
+        <FriendRecommendations />
+
+        <EventsSection />
 
         {/* Quick Actions */}
         <section className="mb-8 grid grid-cols-2 gap-4">

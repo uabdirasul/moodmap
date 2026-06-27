@@ -62,3 +62,43 @@ export interface MoodLogEntry {
   mood: Mood;
   note?: string;
 }
+
+export interface Friend {
+  id: string;
+  name: string;
+  avatar: string;
+  isCloseFriend: boolean;
+}
+
+export interface FriendVisit {
+  id: string;
+  friendId: string;
+  placeId: string;
+  visitedAt: string;
+  feedback: string;
+  enjoyed: boolean;
+  mood: Mood;
+}
+
+export interface FriendLocation {
+  friendId: string;
+  placeId: string;
+  coordinates: LocationCoordinates;
+  updatedAt: string;
+}
+
+export type EventSource = "afisha" | "iticket" | "venue";
+
+export interface Event {
+  id: string;
+  placeId: string;
+  title: string;
+  description: string;
+  date: string;
+  time: string;
+  daysUntil: number;
+  category: string;
+  source: EventSource;
+  priceFrom?: string;
+  image: string;
+}

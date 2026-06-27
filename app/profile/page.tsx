@@ -18,7 +18,7 @@ export default function ProfilePage() {
           <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-primary to-purple-500 mb-4 p-1">
             <div className="w-full h-full rounded-full bg-background border-4 border-background overflow-hidden">
               <img 
-                src={`https://api.dicebear.com/9.x/notionists/svg?seed=${mockUserProfile.name}`} 
+                src="/images/avatars/alex.svg" 
                 alt="Avatar" 
                 className="w-full h-full object-cover"
               />
