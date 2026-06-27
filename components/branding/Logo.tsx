@@ -18,8 +18,8 @@ const sources: Record<LogoVariant, { light: string; dark: string; width: number;
   mark: {
     light: '/logo-mark-light.png',
     dark: '/logo-mark-dark.png',
-    width: 531,
-    height: 531,
+    width: 530,
+    height: 615,
   },
 };
 
@@ -27,14 +27,14 @@ export function Logo({ variant = 'full', className, imageClassName }: LogoProps)
   const { light, dark, width, height } = sources[variant];
 
   return (
-    <picture className={cn('inline-block', className)}>
+    <picture className={cn('inline-block leading-none', className)}>
       <source srcSet={dark} media="(prefers-color-scheme: dark)" />
       <img
         src={light}
         alt="Mood Map"
         width={width}
         height={height}
-        className={cn('h-auto w-full max-w-full', imageClassName)}
+        className={cn('block h-auto w-full max-w-full object-contain', imageClassName)}
         decoding="async"
       />
     </picture>
