@@ -7,7 +7,8 @@ export type Mood =
   | "Stressed"
   | "Relaxed"
   | "Inspired"
-  | "Energetic";
+  | "Energetic"
+  | "Focus";
 
 export type Goal =
   | "Relax"
