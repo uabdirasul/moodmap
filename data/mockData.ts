@@ -3,11 +3,11 @@ import {
   Friend,
   FriendLocation,
   FriendVisit,
+  Goal,
   MoodLogEntry,
   Place,
   RecommendationResult,
-  UserProfile,
-  Goal,
+  UserProfile
 } from "../types";
 
 export const mockPlaces: Place[] = [
@@ -130,26 +130,26 @@ export const mockFriends: Friend[] = [
     id: "f1",
     name: "Benjamin",
     avatar: "/images/avatars/benjamin.svg",
-    isCloseFriend: true,
+    isCloseFriend: true
   },
   {
     id: "f2",
     name: "Sarah",
     avatar: "/images/avatars/sarah.svg",
-    isCloseFriend: true,
+    isCloseFriend: true
   },
   {
     id: "f3",
     name: "Maya",
     avatar: "/images/avatars/maya.svg",
-    isCloseFriend: false,
+    isCloseFriend: false
   },
   {
     id: "f4",
     name: "Daniel",
     avatar: "/images/avatars/daniel.svg",
-    isCloseFriend: true,
-  },
+    isCloseFriend: true
+  }
 ];
 
 export const mockFriendVisits: FriendVisit[] = [
@@ -161,7 +161,7 @@ export const mockFriendVisits: FriendVisit[] = [
     feedback:
       "Perfect spot for a slow morning. The river view and acoustic playlist made it easy to unwind.",
     enjoyed: true,
-    mood: "Calm",
+    mood: "Calm"
   },
   {
     id: "fv2",
@@ -171,7 +171,7 @@ export const mockFriendVisits: FriendVisit[] = [
     feedback:
       "The new contemporary wing is incredible — left feeling inspired and refreshed.",
     enjoyed: true,
-    mood: "Inspired",
+    mood: "Inspired"
   },
   {
     id: "fv3",
@@ -181,7 +181,7 @@ export const mockFriendVisits: FriendVisit[] = [
     feedback:
       "Great vibes and city views at sunset. Music was a bit loud but the energy was fun.",
     enjoyed: true,
-    mood: "Energetic",
+    mood: "Energetic"
   },
   {
     id: "fv4",
@@ -191,8 +191,8 @@ export const mockFriendVisits: FriendVisit[] = [
     feedback:
       "So peaceful. Found a bench by the stream and read for an hour — exactly what I needed.",
     enjoyed: true,
-    mood: "Relaxed",
-  },
+    mood: "Relaxed"
+  }
 ];
 
 export const mockFriendLocations: FriendLocation[] = [
@@ -200,20 +200,20 @@ export const mockFriendLocations: FriendLocation[] = [
     friendId: "f1",
     placeId: "p2",
     coordinates: { lat: 37.7752, lng: -122.4178 },
-    updatedAt: "2 min ago",
+    updatedAt: "2 min ago"
   },
   {
     friendId: "f2",
     placeId: "p1",
     coordinates: { lat: 37.7746, lng: -122.4198 },
-    updatedAt: "5 min ago",
+    updatedAt: "5 min ago"
   },
   {
     friendId: "f4",
     placeId: "p4",
     coordinates: { lat: 37.7723, lng: -122.4153 },
-    updatedAt: "12 min ago",
-  },
+    updatedAt: "12 min ago"
+  }
 ];
 
 export const mockEvents: Event[] = [
@@ -229,7 +229,7 @@ export const mockEvents: Event[] = [
     category: "Concert",
     source: "afisha",
     priceFrom: "$25",
-    image: "/images/events/jazz-roof.jpg",
+    image: "/images/events/jazz-roof.jpg"
   },
   {
     id: "e2",
@@ -243,7 +243,7 @@ export const mockEvents: Event[] = [
     category: "Exhibition",
     source: "iticket",
     priceFrom: "$18",
-    image: "/images/events/exhibition.jpg",
+    image: "/images/events/exhibition.jpg"
   },
   {
     id: "e3",
@@ -257,7 +257,7 @@ export const mockEvents: Event[] = [
     category: "Experience",
     source: "afisha",
     priceFrom: "$12",
-    image: "/images/events/light-walk.jpg",
+    image: "/images/events/light-walk.jpg"
   },
   {
     id: "e4",
@@ -271,7 +271,7 @@ export const mockEvents: Event[] = [
     category: "Live Music",
     source: "venue",
     priceFrom: "Free",
-    image: "/images/events/acoustic-brunch.jpg",
+    image: "/images/events/acoustic-brunch.jpg"
   },
   {
     id: "e5",
@@ -285,8 +285,8 @@ export const mockEvents: Event[] = [
     category: "Wellness",
     source: "afisha",
     priceFrom: "Free",
-    image: "/images/events/mindful-morning.jpg",
-  },
+    image: "/images/events/mindful-morning.jpg"
+  }
 ];
 
 export function getFriendById(id: string): Friend | undefined {
@@ -312,7 +312,9 @@ export function getVisitsForPlace(placeId: string): FriendVisit[] {
   return mockFriendVisits.filter((visit) => visit.placeId === placeId);
 }
 
-export function getFriendLocation(friendId: string): FriendLocation | undefined {
+export function getFriendLocation(
+  friendId: string
+): FriendLocation | undefined {
   return mockFriendLocations.find((loc) => loc.friendId === friendId);
 }
 
@@ -344,10 +346,32 @@ export const mockMoodHistory: MoodLogEntry[] = [
     mood: "Calm",
     note: "Went for a walk in the park"
   },
-  { id: "4", date: "2023-10-04", mood: "Happy" },
-  { id: "5", date: "2023-10-05", mood: "Focus" as any }, // Assuming some extended moods for charting
+  { id: "4", date: "2023-10-04", mood: "Happy", note: "Movie night" },
+  { id: "5", date: "2023-10-05", mood: "Focus" as any },
   { id: "6", date: "2023-10-06", mood: "Irritated" },
-  { id: "7", date: "2023-10-07", mood: "Calm" }
+  { id: "7", date: "2023-10-07", mood: "Calm" },
+
+  // Added entries
+  {
+    id: "8",
+    date: "2023-10-08",
+    mood: "Happy",
+    note: "Great brunch with friends"
+  },
+  { id: "9", date: "2023-10-09", mood: "Sad", note: "Rainy day, stayed in" },
+  { id: "10", date: "2023-10-10", mood: "Focus", note: "Deep work session" },
+  { id: "11", date: "2023-10-11", mood: "Calm" },
+  { id: "12", date: "2023-10-12", mood: "Stressed", note: "Deadline crunch" },
+  { id: "13", date: "2023-10-13", mood: "Happy", note: "Movie night" },
+  { id: "14", date: "2023-10-14", mood: "Tired", note: "Didn't sleep well" },
+  {
+    id: "15",
+    date: "2023-10-15",
+    mood: "Calm",
+    note: "Meditation in the morning"
+  },
+  { id: "16", date: "2023-10-16", mood: "Irritated" },
+  { id: "17", date: "2023-10-17", mood: "Happy", note: "Productive and sunny" }
 ];
 
 function getGoalScore(place: Place, goal: Goal): number {
@@ -375,7 +399,10 @@ function formatGoalsList(goals: Goal[]): string {
   if (goals.length === 2) {
     return `${goals[0].toLowerCase()} and ${goals[1].toLowerCase()}`;
   }
-  return `${goals.slice(0, -1).map((g) => g.toLowerCase()).join(", ")}, and ${goals[goals.length - 1].toLowerCase()}`;
+  return `${goals
+    .slice(0, -1)
+    .map((g) => g.toLowerCase())
+    .join(", ")}, and ${goals[goals.length - 1].toLowerCase()}`;
 }
 
 // Helper to simulate AI recommendation logic based on goals/mood
@@ -411,6 +438,6 @@ export function getMockRecommendations(
     matchReason:
       index === 0
         ? `Because you want to ${goalsLabel} while feeling ${mood.toLowerCase()}, this location offers the perfect balance of ${place.environmentalCharacteristics.join(" and ")}.`
-        : `Strong fit for ${idealForMatches > 0 ? `${idealForMatches} of your selected goals` : "your combined goals"} — especially ${place.category.toLowerCase()}s when seeking ${goalsLabel}.`,
+        : `Strong fit for ${idealForMatches > 0 ? `${idealForMatches} of your selected goals` : "your combined goals"} — especially ${place.category.toLowerCase()}s when seeking ${goalsLabel}.`
   }));
 }
