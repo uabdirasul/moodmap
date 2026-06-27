@@ -17,7 +17,10 @@ export function BottomNav() {
   ];
 
   return (
-    <div className="absolute bottom-0 w-full glass pb-safe pt-2 px-6 z-50">
+    <nav
+      aria-label="Main navigation"
+      className="fixed bottom-0 left-1/2 z-50 w-full max-w-md -translate-x-1/2 glass px-6 pt-2 pb-[max(1rem,env(safe-area-inset-bottom))]"
+    >
       <div className="flex justify-between items-center mb-4">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
@@ -38,6 +41,6 @@ export function BottomNav() {
           );
         })}
       </div>
-    </div>
+    </nav>
   );
 }
