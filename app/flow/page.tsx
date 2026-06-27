@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { getMockRecommendations } from '@/data/mockData';
-import { RecommendationResult } from '@/types';
+import { Goal, RecommendationResult } from '@/types';
 import { ArrowLeft, MapPin, Sparkles } from 'lucide-react';
 
 const MOODS = [
@@ -18,7 +18,7 @@ const MOODS = [
   { emoji: '😰', label: 'Stressed' }
 ];
 
-const GOALS = ['Relax', 'Focus', 'Inspiration', 'Walk', 'Energy', 'Quiet Place'];
+const GOALS: Goal[] = ['Relax', 'Focus', 'Inspiration', 'Walk', 'Energy', 'Quiet Place'];
 
 const LOADING_MESSAGES = [
   "Analyzing your mood...",
@@ -31,7 +31,7 @@ export default function FlowPage() {
   const router = useRouter();
   const [step, setStep] = useState<'mood' | 'goal' | 'loading' | 'results'>('mood');
   const [mood, setMood] = useState('');
-  const [goal, setGoal] = useState('');
+  const [goals, setGoals] = useState<Goal[]>([]);
   const [loadingMsgIdx, setLoadingMsgIdx] = useState(0);
   const [results, setResults] = useState<RecommendationResult[]>([]);
 
@@ -43,7 +43,7 @@ export default function FlowPage() {
       }, 800);
 
       const timeout = setTimeout(() => {
-        setResults(getMockRecommendations(mood, goal));
+        setResults(getMockRecommendations(mood, goals));
         setStep('results');
       }, 3500); // 3.5s loading simulation
 
@@ -52,7 +52,15 @@ export default function FlowPage() {
         clearTimeout(timeout);
       };
     }
-  }, [step, mood, goal]);
+  }, [step, mood, goals]);
+
+  const toggleGoal = (goal: Goal) => {
+    setGoals((current) =>
+      current.includes(goal)
+        ? current.filter((item) => item !== goal)
+        : [...current, goal]
+    );
+  };
 
   const renderMood = () => (
     <motion.div
@@ -94,25 +102,29 @@ export default function FlowPage() {
       exit={{ opacity: 0, x: -20 }}
       className="flex flex-col h-full justify-center"
     >
-      <h2 className="text-3xl font-bold text-center mb-10">What do you want to do?</h2>
+      <h2 className="text-3xl font-bold text-center mb-3">What do you want to do?</h2>
+      <p className="text-center text-muted-foreground mb-10">Select all that apply</p>
       <div className="grid grid-cols-2 gap-4">
-        {GOALS.map(g => (
+        {GOALS.map((g) => {
+          const isSelected = goals.includes(g);
+
+          return (
           <Card 
             key={g} 
             hoverable 
-            onClick={() => setGoal(g)}
+            onClick={() => toggleGoal(g)}
             className={`flex items-center justify-center py-6 cursor-pointer transition-all ${
-              goal === g ? 'border-primary bg-primary/5 scale-[1.02]' : ''
+              isSelected ? 'border-primary bg-primary/5 scale-[1.02]' : ''
             }`}
           >
             <span className="font-medium">{g}</span>
           </Card>
-        ))}
+        )})}
       </div>
       <div className="mt-12 flex gap-4">
         <Button variant="outline" onClick={() => setStep('mood')}>Back</Button>
-        <Button fullWidth disabled={!goal} onClick={() => setStep('loading')}>
-          Find Places
+        <Button fullWidth disabled={goals.length === 0} onClick={() => setStep('loading')}>
+          Find Places{goals.length > 0 ? ` (${goals.length})` : ''}
         </Button>
       </div>
     </motion.div>
@@ -177,7 +189,7 @@ export default function FlowPage() {
                 </div>
               </div>
               <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                {res.place.description}
+                {res.matchReason}
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 {res.place.moodTags.map(tag => (

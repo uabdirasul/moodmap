@@ -2,7 +2,8 @@ import {
   MoodLogEntry,
   Place,
   RecommendationResult,
-  UserProfile
+  UserProfile,
+  Goal,
 } from "../types";
 
 export const mockPlaces: Place[] = [
@@ -140,28 +141,67 @@ export const mockMoodHistory: MoodLogEntry[] = [
   { id: "7", date: "2023-10-07", mood: "Calm" }
 ];
 
-// Helper to simulate AI recommendation logic based on goal/mood
+function getGoalScore(place: Place, goal: Goal): number {
+  switch (goal) {
+    case "Relax":
+    case "Quiet Place":
+      return place.calmScore;
+    case "Focus":
+      return place.focusScore;
+    case "Energy":
+      return place.energyScore;
+    case "Inspiration":
+      return place.inspirationScore;
+    case "Walk":
+      return place.idealFor.includes("Walk")
+        ? 9
+        : (place.calmScore + place.inspirationScore) / 2;
+    default:
+      return 0;
+  }
+}
+
+function formatGoalsList(goals: Goal[]): string {
+  if (goals.length === 1) return goals[0].toLowerCase();
+  if (goals.length === 2) {
+    return `${goals[0].toLowerCase()} and ${goals[1].toLowerCase()}`;
+  }
+  return `${goals.slice(0, -1).map((g) => g.toLowerCase()).join(", ")}, and ${goals[goals.length - 1].toLowerCase()}`;
+}
+
+// Helper to simulate AI recommendation logic based on goals/mood
 export function getMockRecommendations(
   mood: string,
-  goal: string
+  goals: Goal[]
 ): RecommendationResult[] {
-  let matchedPlaces = [...mockPlaces];
+  if (goals.length === 0) return [];
 
-  if (goal === "Relax" || goal === "Quiet Place") {
-    matchedPlaces = matchedPlaces.filter((p) => p.calmScore > 6);
-  } else if (goal === "Energy") {
-    matchedPlaces = matchedPlaces.filter((p) => p.energyScore > 6);
-  } else if (goal === "Focus") {
-    matchedPlaces = matchedPlaces.filter((p) => p.focusScore > 6);
-  }
+  const rankedPlaces = [...mockPlaces]
+    .map((place) => {
+      const goalScores = goals.map((goal) => getGoalScore(place, goal));
+      const averageGoalScore =
+        goalScores.reduce((sum, score) => sum + score, 0) / goals.length;
+      const idealForMatches = goals.filter((goal) =>
+        place.idealFor.includes(goal)
+      ).length;
+      const compositeScore = averageGoalScore + idealForMatches * 1.5;
 
-  // Sort by some fake AI matching logic
-  return matchedPlaces.slice(0, 3).map((place, index) => ({
+      return { place, compositeScore, idealForMatches };
+    })
+    .filter(({ compositeScore }) => compositeScore >= 4)
+    .sort((a, b) => b.compositeScore - a.compositeScore);
+
+  const goalsLabel = formatGoalsList(goals);
+
+  return rankedPlaces.slice(0, 3).map(({ place, idealForMatches }, index) => ({
     place,
-    compatibilityScore: 98 - index * 5 - Math.floor(Math.random() * 5),
+    compatibilityScore: Math.min(
+      99,
+      Math.round(88 + idealForMatches * 3 - index * 5 + place.calmScore * 0.5)
+    ),
     matchReason:
       index === 0
-        ? `Because you want to ${goal.toLowerCase()} while feeling ${mood.toLowerCase()}, this location offers the perfect balance of ${place.environmentalCharacteristics.join(" and ")}.`
-        : `Matches your historical preference for ${place.category.toLowerCase()}s when seeking ${goal.toLowerCase()}.`
+        ? `Because you want to ${goalsLabel} while feeling ${mood.toLowerCase()}, this location offers the perfect balance of ${place.environmentalCharacteristics.join(" and ")}.`
+        : `Strong fit for ${idealForMatches > 0 ? `${idealForMatches} of your selected goals` : "your combined goals"} — especially ${place.category.toLowerCase()}s when seeking ${goalsLabel}.`,
   }));
 }

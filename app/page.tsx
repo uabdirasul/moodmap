@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
-import { MapPin } from 'lucide-react';
+import { Logo } from '@/components/branding/Logo';
 
 export default function SplashPage() {
   const router = useRouter();
@@ -29,24 +29,15 @@ export default function SplashPage() {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-8 p-4 rounded-3xl glass-card text-primary shadow-xl"
+          className="mb-8 w-full max-w-[280px]"
         >
-          <MapPin size={48} strokeWidth={1.5} />
+          <Logo variant="full" />
         </motion.div>
-
-        <motion.h1 
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="text-5xl font-bold tracking-tight text-foreground mb-4"
-        >
-          MoodMap
-        </motion.h1>
 
         <motion.p 
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
           className="text-lg text-muted-foreground mb-12"
         >
           Discover places based on how you want to feel.

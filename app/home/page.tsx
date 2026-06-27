@@ -5,8 +5,9 @@ import { PageTransition } from '@/components/animations/PageTransition';
 import { BottomNav } from '@/components/navigation/BottomNav';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
+import { Logo } from '@/components/branding/Logo';
 import { mockUserProfile, mockPlaces } from '@/data/mockData';
-import { Compass, Sun, MapPin, ArrowRight } from 'lucide-react';
+import { Sun, MapPin, ArrowRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export default function HomePage() {
@@ -35,8 +36,8 @@ export default function HomePage() {
             onClick={() => router.push('/flow')}
             className="border-primary/20 bg-gradient-to-br from-indigo-50/80 to-purple-50/80 dark:from-indigo-950/40 dark:to-purple-950/40 overflow-hidden relative"
           >
-            <div className="absolute right-[-20px] top-[-20px] opacity-10">
-              <Compass size={120} />
+            <div className="absolute right-[-10px] top-[-10px] w-32 opacity-15 pointer-events-none">
+              <Logo variant="mark" />
             </div>
             <div className="relative z-10">
               <h2 className="text-xl font-semibold mb-2">How are you feeling?</h2>

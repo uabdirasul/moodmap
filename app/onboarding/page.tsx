@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { ProgressBar } from '@/components/ui/ProgressBar';
+import { Logo } from '@/components/branding/Logo';
 
 const STEPS = [
   {
@@ -20,7 +21,7 @@ const STEPS = [
   },
   {
     id: 'goal',
-    title: "What is your main goal with MoodMap?",
+    title: "What is your main goal with Mood Map?",
     options: ['Reduce stress', 'Find focus areas', 'Discover new spots', 'Socialize']
   }
 ];
@@ -48,7 +49,11 @@ export default function OnboardingPage() {
 
   return (
     <div className="flex flex-col min-h-screen p-6 bg-background">
-      <div className="mt-8 mb-12">
+      <div className="mt-6 mb-8 flex justify-center">
+        <Logo variant="mark" className="w-28" />
+      </div>
+
+      <div className="mb-12">
         <ProgressBar progress={progress} />
       </div>
 

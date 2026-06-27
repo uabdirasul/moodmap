@@ -6,8 +6,21 @@ import { MobileContainer } from "@/components/layout/MobileContainer";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "MoodMap | Emotion-based Navigation",
+  title: "Mood Map | Emotion-based Navigation",
   description: "Discover places based on how you want to feel.",
+  icons: {
+    icon: [
+      {
+        url: "/icon-light.png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/icon-dark.png",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({
