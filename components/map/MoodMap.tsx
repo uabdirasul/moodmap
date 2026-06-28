@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { MapContainer, Marker, TileLayer, useMap } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-import { Event, Friend, FriendLocation, Place } from '@/types';
-import { getPlaceMoodType, MOOD_MAP_COLORS } from '@/lib/placeMood';
+import { getPlaceMoodType, MOOD_MAP_COLORS } from "@/lib/placeMood";
+import { Friend, FriendLocation, Place } from "@/types";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
 
-const SF_CENTER: [number, number] = [37.7749, -122.4194];
+const SF_CENTER: [number, number] = [42.464792, 59.614653];
 
 const TILE_URLS = {
   light:
-    'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-  dark: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+    "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+  dark: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
 };
 
 export interface MapFriend {
@@ -23,10 +23,10 @@ export interface MapFriend {
 
 function createMoodIcon(color: string, selected = false, hasEvent = false) {
   return L.divIcon({
-    className: 'mood-map-marker',
+    className: "mood-map-marker",
     html: `
-      <div class="mood-marker-wrap${selected ? ' mood-marker-wrap--selected' : ''}">
-        ${hasEvent ? '<div class="mood-marker-event-badge"><span>📅</span></div>' : ''}
+      <div class="mood-marker-wrap${selected ? " mood-marker-wrap--selected" : ""}">
+        ${hasEvent ? '<div class="mood-marker-event-badge"><span>📅</span></div>' : ""}
         <div class="mood-marker-pulse" style="background:${color}"></div>
         <div class="mood-marker-dot" style="background:${color}">
           <div class="mood-marker-shine"></div>
@@ -35,16 +35,16 @@ function createMoodIcon(color: string, selected = false, hasEvent = false) {
       </div>
     `,
     iconSize: [36, hasEvent ? 52 : 48],
-    iconAnchor: [18, hasEvent ? 46 : 42],
+    iconAnchor: [18, hasEvent ? 46 : 42]
   });
 }
 
 function createFriendIcon(avatar: string, name: string, selected = false) {
   const initial = name.charAt(0);
   return L.divIcon({
-    className: 'friend-map-marker',
+    className: "friend-map-marker",
     html: `
-      <div class="friend-marker-wrap${selected ? ' friend-marker-wrap--selected' : ''}">
+      <div class="friend-marker-wrap${selected ? " friend-marker-wrap--selected" : ""}">
         <div class="friend-marker-pulse"></div>
         <div class="friend-marker-avatar">
           <img src="${avatar}" alt="${name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
@@ -54,13 +54,13 @@ function createFriendIcon(avatar: string, name: string, selected = false) {
       </div>
     `,
     iconSize: [44, 52],
-    iconAnchor: [22, 48],
+    iconAnchor: [22, 48]
   });
 }
 
 function FitBounds({
   places,
-  friends,
+  friends
 }: {
   places: Place[];
   friends: MapFriend[];
@@ -69,8 +69,17 @@ function FitBounds({
 
   useEffect(() => {
     const points: [number, number][] = [
-      ...places.map((place) => [place.coordinates.lat, place.coordinates.lng] as [number, number]),
-      ...friends.map(({ location }) => [location.coordinates.lat, location.coordinates.lng] as [number, number]),
+      ...places.map(
+        (place) =>
+          [place.coordinates.lat, place.coordinates.lng] as [number, number]
+      ),
+      ...friends.map(
+        ({ location }) =>
+          [location.coordinates.lat, location.coordinates.lng] as [
+            number,
+            number
+          ]
+      )
     ];
     if (points.length === 0) return;
 
@@ -85,7 +94,7 @@ function FocusSelection({
   place,
   friend,
   places,
-  friends,
+  friends
 }: {
   place: Place | null;
   friend: MapFriend | null;
@@ -109,7 +118,7 @@ function FocusSelection({
     if (place) {
       hadSelection.current = true;
       map.flyTo([place.coordinates.lat, place.coordinates.lng], 15, {
-        duration: 0.6,
+        duration: 0.6
       });
       return;
     }
@@ -117,8 +126,16 @@ function FocusSelection({
     if (!hadSelection.current) return;
 
     const points: [number, number][] = [
-      ...places.map((p) => [p.coordinates.lat, p.coordinates.lng] as [number, number]),
-      ...friends.map(({ location }) => [location.coordinates.lat, location.coordinates.lng] as [number, number]),
+      ...places.map(
+        (p) => [p.coordinates.lat, p.coordinates.lng] as [number, number]
+      ),
+      ...friends.map(
+        ({ location }) =>
+          [location.coordinates.lat, location.coordinates.lng] as [
+            number,
+            number
+          ]
+      )
     ];
     if (points.length === 0) return;
 
@@ -132,22 +149,22 @@ function FocusSelection({
 function ThemeTileLayer() {
   const [isDark, setIsDark] = useState(
     () =>
-      typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
   );
 
   useEffect(() => {
-    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = (event: MediaQueryListEvent) =>
       setIsDark(event.matches);
 
-    media.addEventListener('change', handleChange);
-    return () => media.removeEventListener('change', handleChange);
+    media.addEventListener("change", handleChange);
+    return () => media.removeEventListener("change", handleChange);
   }, []);
 
   return (
     <TileLayer
-      key={isDark ? 'dark' : 'light'}
+      key={isDark ? "dark" : "light"}
       url={isDark ? TILE_URLS.dark : TILE_URLS.light}
       attribution=""
       subdomains="abcd"
@@ -173,7 +190,7 @@ export function MoodMap({
   selectedPlaceId = null,
   selectedFriendId = null,
   onPlaceSelect,
-  onFriendSelect,
+  onFriendSelect
 }: MoodMapProps) {
   const eventSet = useMemo(() => new Set(eventPlaceIds), [eventPlaceIds]);
 
@@ -237,7 +254,7 @@ export function MoodMap({
           position={[place.coordinates.lat, place.coordinates.lng]}
           icon={getPlaceIcon(place)}
           eventHandlers={{
-            click: () => onPlaceSelect?.(place),
+            click: () => onPlaceSelect?.(place)
           }}
           zIndexOffset={place.id === selectedPlaceId ? 1000 : 0}
         />
@@ -248,11 +265,11 @@ export function MoodMap({
           key={`friend-${item.friend.id}`}
           position={[
             item.location.coordinates.lat,
-            item.location.coordinates.lng,
+            item.location.coordinates.lng
           ]}
           icon={getFriendIcon(item)}
           eventHandlers={{
-            click: () => onFriendSelect?.(item),
+            click: () => onFriendSelect?.(item)
           }}
           zIndexOffset={item.friend.id === selectedFriendId ? 1100 : 500}
         />

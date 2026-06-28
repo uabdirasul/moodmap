@@ -13,106 +13,166 @@ import {
 export const mockPlaces: Place[] = [
   {
     id: "p1",
-    name: "Quiet Park",
-    category: "Park",
-    moodTags: ["Calm", "Relaxed"],
-    idealFor: ["Relax", "Walk", "Quiet Place"],
-    energyScore: 2,
-    calmScore: 9,
-    focusScore: 5,
-    inspirationScore: 7,
-    stressScore: 1,
-    image: "/images/places/quiet-park.jpg",
+    name: "Savitsky Nukus Museum of Art",
+    category: "Museum",
+    moodTags: ["Inspired", "Curious", "Reflective"],
+    idealFor: ["Inspiration", "History", "Culture", "Quiet Place"],
+    energyScore: 3,
+    calmScore: 7,
+    focusScore: 8,
+    inspirationScore: 10,
+    stressScore: 2,
+    image: "/images/places/savitsky-museum.jpg",
     description:
-      "A secluded park with gentle streams, mature trees, and plenty of shaded benches. Perfect for reading or escaping the city noise.",
-    distance: "0.8 miles",
-    bestTimes: "Early morning or late afternoon",
-    environmentalCharacteristics: ["Low noise", "High nature", "Open space"],
-    coordinates: { lat: 37.7749, lng: -122.4194 }
+      "A legendary desert museum hiding the world's second largest collection of Russian avant-garde art — works secretly rescued from Soviet censorship. Known as the 'Louvre of the Sands', its 100,000+ items span forbidden masterpieces, Karakalpak folk art, and ancient archaeological finds.",
+    distance: "0.2 miles",
+    bestTimes: "Tuesday to Friday, morning hours",
+    environmentalCharacteristics: [
+      "Indoor",
+      "Low noise",
+      "Culturally rich",
+      "Climate controlled"
+    ],
+    coordinates: { lat: 42.46516710986553, lng: 59.61374527083403 }
   },
   {
     id: "p2",
-    name: "Riverside Café",
-    category: "Café",
-    moodTags: ["Calm", "Happy"],
-    idealFor: ["Relax", "Focus", "Inspiration"],
+    name: "Cake Bumer",
+    category: "Cafe",
+    moodTags: ["Happy", "Relaxed"],
+    idealFor: ["Relax", "Quiet Place"],
     energyScore: 4,
     calmScore: 7,
-    focusScore: 8,
-    inspirationScore: 6,
+    focusScore: 3,
+    inspirationScore: 5,
     stressScore: 2,
-    image: "/images/places/riverside-cafe.jpg",
+    image: "/images/places/cake-bumer.png",
     description:
-      "A bright, airy coffee shop overlooking the river. Gentle acoustic music and the smell of roasted beans create a perfect focus environment.",
-    distance: "1.2 miles",
-    bestTimes: "Mid-morning",
-    environmentalCharacteristics: [
-      "Ambient noise",
-      "Good lighting",
-      "Comfortable seating"
-    ],
-    coordinates: { lat: 37.775, lng: -122.418 }
+      "A cozy and colorful bakery-café opposite the Savitsky Museum, popular with locals for its generous portions, cakes, and love-themed décor. Features an indoor café, a pastry shop, and a summer terrace. Great for a sweet break or a casual meal.",
+    distance: "0.3 miles",
+    bestTimes: "Morning or afternoon",
+    environmentalCharacteristics: ["Indoor", "Cozy", "Low noise", "Urban"],
+    coordinates: { lat: 42.46447897879004, lng: 59.61179273947377 }
   },
   {
     id: "p3",
-    name: "Art Museum",
-    category: "Museum",
-    moodTags: ["Calm", "Inspired"],
-    idealFor: ["Inspiration", "Walk", "Quiet Place"],
+    name: "Flagpole with Flags of Uzbekistan and Karakalpakstan",
+    category: "Landmark",
+    moodTags: ["Calm", "Reflective"],
+    idealFor: ["Walk", "Quiet Place", "History"],
     energyScore: 3,
-    calmScore: 8,
-    focusScore: 6,
-    inspirationScore: 10,
-    stressScore: 1,
-    image: "/images/places/art-museum.jpg",
+    calmScore: 6,
+    focusScore: 4,
+    inspirationScore: 6,
+    stressScore: 2,
+    image: "/images/places/nukus-flagpole.png",
     description:
-      "A modern art museum with spacious, minimalist galleries and thought-provoking exhibits. Ideal for shifting your perspective.",
-    distance: "2.5 miles",
-    bestTimes: "Weekday afternoons",
+      "A civic landmark in the heart of Nukus displaying the national flags of Uzbekistan and the autonomous Republic of Karakalpakstan side by side. A symbol of regional identity and political unity, it's a quiet open-air spot popular with locals and visitors exploring the city center.",
+    distance: "0.1 miles",
+    bestTimes: "Morning or golden hour",
     environmentalCharacteristics: [
-      "Very quiet",
-      "Climate controlled",
-      "Visually stimulating"
+      "Outdoor",
+      "Open space",
+      "Low noise",
+      "Urban"
     ],
-    coordinates: { lat: 37.78, lng: -122.42 }
+    coordinates: { lat: 42.465164380903865, lng: 59.615096658915796 }
   },
   {
     id: "p4",
-    name: "Rooftop Terrace",
-    category: "Lounge",
-    moodTags: ["Happy", "Energetic"],
-    idealFor: ["Energy", "Inspiration"],
-    energyScore: 8,
-    calmScore: 3,
-    focusScore: 2,
-    inspirationScore: 8,
-    stressScore: 4,
-    image: "/images/places/rooftop-terrace.jpg",
+    name: "Cinnamon Coffee & Pastry",
+    category: "Cafe",
+    moodTags: ["Happy", "Calm", "Relaxed"],
+    idealFor: ["Relax", "Focus", "Quiet Place"],
+    energyScore: 3,
+    calmScore: 8,
+    focusScore: 6,
+    inspirationScore: 5,
+    stressScore: 1,
+    image: "/images/places/cinnamon-cafe.png",
     description:
-      "A lively rooftop space with panoramic city views, upbeat music, and a vibrant atmosphere to lift your spirits.",
-    distance: "0.5 miles",
-    bestTimes: "Evening",
-    environmentalCharacteristics: ["High energy", "Outdoor", "Scenic views"],
-    coordinates: { lat: 37.772, lng: -122.415 }
+      "Ranked #1 restaurant in Nukus, this plant-filled café sits right opposite the Savitsky Museum. Known for real espresso, fresh pastries, salads, and an English menu. Light, natural décor and a relaxed atmosphere make it a favourite among travellers and locals alike.",
+    distance: "0.2 miles",
+    bestTimes: "Morning to early afternoon",
+    environmentalCharacteristics: [
+      "Indoor",
+      "Cozy",
+      "Low noise",
+      "Culturally rich"
+    ],
+    coordinates: { lat: 42.46447, lng: 59.61198 }
   },
   {
     id: "p5",
-    name: "Botanical Garden",
-    category: "Garden",
-    moodTags: ["Calm", "Happy"],
-    idealFor: ["Relax", "Walk", "Inspiration"],
-    energyScore: 3,
-    calmScore: 10,
-    focusScore: 4,
-    inspirationScore: 9,
-    stressScore: 0,
-    image: "/images/places/botanical-garden.jpg",
+    name: "Berdakh National Museum",
+    category: "Museum",
+    moodTags: ["Curious", "Reflective", "Calm"],
+    idealFor: ["History", "Culture", "Quiet Place"],
+    energyScore: 2,
+    calmScore: 8,
+    focusScore: 7,
+    inspirationScore: 7,
+    stressScore: 1,
+    image: "/images/places/berdakh-museum.png",
     description:
-      "Lush gardens featuring exotic plants, koi ponds, and meandering stone paths. A true sanctuary from stress.",
-    distance: "3.1 miles",
-    bestTimes: "Spring mornings",
-    environmentalCharacteristics: ["High nature", "Fresh air", "Tranquil"],
-    coordinates: { lat: 37.765, lng: -122.43 }
+      "A beautifully domed museum dedicated to Berdakh, the revered Karakalpak poet and first historian of his people. Houses archaeological finds, ancient manuscripts in Arabic, Persian and Turkic, and rich ethnographic collections spanning millennia of Karakalpak culture.",
+    distance: "0.5 miles",
+    bestTimes: "Weekday mornings",
+    environmentalCharacteristics: [
+      "Indoor",
+      "Low noise",
+      "Culturally rich",
+      "Climate controlled"
+    ],
+    coordinates: { lat: 42.4625, lng: 59.6185 }
+  },
+  {
+    id: "p6",
+    name: "Doslıq dem alıw orayı",
+    category: "Park",
+    moodTags: ["Calm", "Relaxed", "Happy"],
+    idealFor: ["Relax", "Walk", "Quiet Place"],
+    energyScore: 3,
+    calmScore: 9,
+    focusScore: 4,
+    inspirationScore: 6,
+    stressScore: 1,
+    image: "/images/places/nukus-city-park.png",
+    description:
+      "A shaded urban park near the museum district, with tree-lined paths, benches, and a calm atmosphere away from the dusty main roads. A favourite spot for morning walkers, families, and anyone needing a quiet pause in the middle of the city.",
+    distance: "0.3 miles",
+    bestTimes: "Early morning or late afternoon",
+    environmentalCharacteristics: [
+      "Outdoor",
+      "Open space",
+      "Low noise",
+      "High nature"
+    ],
+    coordinates: { lat: 42.4658, lng: 59.6128 }
+  },
+  {
+    id: "p7",
+    name: "Karakalpakstan State Museum of History",
+    category: "Museum",
+    moodTags: ["Curious", "Reflective", "Inspired"],
+    idealFor: ["History", "Culture", "Focus"],
+    energyScore: 2,
+    calmScore: 7,
+    focusScore: 8,
+    inspirationScore: 8,
+    stressScore: 1,
+    image: "/images/places/history-museum-nukus.png",
+    description:
+      "The main history museum of Karakalpakstan, covering the region from ancient Khorezm civilizations through Soviet times to independence. Exhibits include pottery, weapons, coins, costumes, and scale models of legendary desert fortresses. A must for context before exploring the wider region.",
+    distance: "0.6 miles",
+    bestTimes: "Tuesday to Saturday, morning",
+    environmentalCharacteristics: [
+      "Indoor",
+      "Low noise",
+      "Culturally rich",
+      "Climate controlled"
+    ],
+    coordinates: { lat: 42.4638, lng: 59.6092 }
   }
 ];
 
@@ -159,17 +219,17 @@ export const mockFriendVisits: FriendVisit[] = [
     placeId: "p2",
     visitedAt: "Yesterday",
     feedback:
-      "Perfect spot for a slow morning. The river view and acoustic playlist made it easy to unwind.",
+      "Stumbled in for coffee and ended up ordering two slices of cake. The décor is fun and a little over the top, but that's part of the charm. Perfect afternoon stop after the Savitsky Museum.",
     enjoyed: true,
-    mood: "Calm"
+    mood: "Happy"
   },
   {
     id: "fv2",
-    friendId: "f1",
-    placeId: "p3",
+    friendId: "f4",
+    placeId: "p1",
     visitedAt: "3 days ago",
     feedback:
-      "The new contemporary wing is incredible — left feeling inspired and refreshed.",
+      "Stood in front of the forbidden avant-garde paintings for way longer than planned. The stories behind each canvas hit differently when you know they were nearly destroyed.",
     enjoyed: true,
     mood: "Inspired"
   },
@@ -179,19 +239,19 @@ export const mockFriendVisits: FriendVisit[] = [
     placeId: "p4",
     visitedAt: "Last Friday",
     feedback:
-      "Great vibes and city views at sunset. Music was a bit loud but the energy was fun.",
+      "Real espresso in Nukus — didn't expect that. Light space, plants everywhere, and the pastries are genuinely good. Came back the next morning too.",
     enjoyed: true,
-    mood: "Energetic"
+    mood: "Relaxed"
   },
   {
     id: "fv4",
     friendId: "f2",
-    placeId: "p1",
+    placeId: "p6",
     visitedAt: "2 days ago",
     feedback:
-      "So peaceful. Found a bench by the stream and read for an hour — exactly what I needed.",
+      "Early morning walk through the park before the heat set in. Quiet, shaded, and exactly what I needed to clear my head before a long day.",
     enjoyed: true,
-    mood: "Relaxed"
+    mood: "Calm"
   }
 ];
 
@@ -199,19 +259,19 @@ export const mockFriendLocations: FriendLocation[] = [
   {
     friendId: "f1",
     placeId: "p2",
-    coordinates: { lat: 37.7752, lng: -122.4178 },
+    coordinates: { lat: 42.46447897879004, lng: 59.61179273947377 },
     updatedAt: "2 min ago"
   },
   {
     friendId: "f2",
-    placeId: "p1",
-    coordinates: { lat: 37.7746, lng: -122.4198 },
+    placeId: "p6",
+    coordinates: { lat: 42.4658, lng: 59.6128 },
     updatedAt: "5 min ago"
   },
   {
     friendId: "f4",
-    placeId: "p4",
-    coordinates: { lat: 37.7723, lng: -122.4153 },
+    placeId: "p1",
+    coordinates: { lat: 42.46516710986553, lng: 59.61374527083403 },
     updatedAt: "12 min ago"
   }
 ];

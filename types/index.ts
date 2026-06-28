@@ -8,7 +8,9 @@ export type Mood =
   | "Relaxed"
   | "Inspired"
   | "Energetic"
-  | "Focus";
+  | "Focus"
+  | "Curious"
+  | "Reflective";
 
 export type Goal =
   | "Relax"
@@ -16,6 +18,10 @@ export type Goal =
   | "Inspiration"
   | "Walk"
   | "Energy"
+  | "Quiet Place"
+  | "Art Lovers"
+  | "History"
+  | "Culture"
   | "Quiet Place";
 
 export interface LocationCoordinates {
