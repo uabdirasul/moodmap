@@ -49,10 +49,28 @@ export default function PlaceDetailsPage() {
       <div className="p-6">
         {/* Action Buttons */}
         <div className="flex gap-4 mb-8">
-          <Button fullWidth className="gap-2">
+          <Button 
+            fullWidth 
+            className="gap-2"
+            onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${place.coordinates.lat},${place.coordinates.lng}`, '_blank')}
+          >
             <Navigation size={18} /> Directions
           </Button>
-          <Button variant="secondary" className="px-4">
+          <Button 
+            variant="secondary" 
+            className="px-4"
+            onClick={() => {
+              if (navigator.share) {
+                navigator.share({
+                  title: place.name,
+                  text: `Check out ${place.name} on MoodMap!`,
+                  url: window.location.href,
+                }).catch(console.error);
+              } else {
+                alert(`Share ${place.name}`);
+              }
+            }}
+          >
             <Share size={18} />
           </Button>
         </div>
